@@ -4,6 +4,7 @@
 ### NextJS ###
 # dependencies
 /node_modules
+**/node_modules
 /.pnp
 .pnp.js
 
@@ -63,7 +64,7 @@ sketch
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-
+.idea
 # AWS User-specific
 .idea/**/aws.xml
 
