@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Bootstrap 5 From Scratch\nBuild 5 Modern Websites",
+    "level": "BEGINNER",
+    "url": "https://traversymedia.com/bootstrap-from-scratch",
+    "promo": "https://traversymedia.com/bootstrap-from-scratch"
+  },
+  {
+    "title": "MERN From Scratch\nBuild an eCommerce Platform",
+    "level": "INTERMEDIATE",
+    "url": "https://www.traversymedia.com/mern-stack-from-scratch",
+    "promo": "https://www.traversymedia.com/mern-stack-from-scratch"
+  },
+  {
+    "title": "Modern JavaScript From The Beginning 2.0",
+    "level": "ALL LEVELS",
+    "url": "https://traversymedia.com/modern-javascript-2-0",
+    "promo": "https://traversymedia.com/modern-javascript-2-0"
+  },
+  {
+    "title": "React Front To Back",
+    "level": "BEGINNER - INTERMEDIATE",
+    "url": "https://traversymedia.com/Modern-React-Front-To-Back-Course",
+    "promo": "https://traversymedia.com/Modern-React-Front-To-Back-Course"
+  },
+  {
+    "title": "50 Projects in 50 Days - HTML, CSS & JavaScript",
+    "level": "ALL LEVELS",
+    "url": "https://traversymedia.com/50-Projects-In-50-Days",
+    "promo": "https://traversymedia.com/50-Projects-In-50-Days"
+  },
+  {
+    "title": "Modern HTML & CSS From The Beginning",
+    "level": "BEGINNER",
+    "url": "https://traversymedia.com/modern-html-css-course",
+    "promo": "https://traversymedia.com/modern-html-css-course"
+  },
+  {
+    "title": "Node.js API Masterclass",
+    "level": "INTERMEDIATE",
+    "url": "https://traversymedia.com/node-js-api-masterclass",
+    "promo": "https://traversymedia.com/node-js-api-masterclass"
+  },
+  {
+    "title": "Next.js Dev To Deployment",
+    "level": "INTERMEDIATE",
+    "url": "https://traversymedia.com/next-js-dev-to-deployment",
+    "promo": "https://traversymedia.com/next-js-dev-to-deployment"
+  },
+  {
+    "title": "Python Django Dev To Deployment",
+    "level": "INTERMEDIATE",
+    "url": "https://traversymedia.com/Python-Django-Dev-To-Deployment",
+    "promo": "https://traversymedia.com/Python-Django-Dev-To-Deployment"
+  }
+]
