@@ -7,7 +7,7 @@ const puppeteer = require("puppeteer");
 
     const page = await browser.newPage();
     await page.goto('https://www.hepsiburada.com/bilgisayarlar-c-2147483646')
-    //await page.screenshot({path: 'hepsiburada.png', fullPage: true})
+    //await page.screenshot({path: 'hepsiburadaa.png', fullPage: true})
     // const grabParagraf = await page.evaluate(() => {
     //     const pTag = document.querySelector('.productListContent-frGrtf5XrVXRwJ05HUfU .productListContent-rEYj2_8SETJUeqNhyzSm li div ')
     //     return pTag.innerText
