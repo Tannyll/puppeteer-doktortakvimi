@@ -6,6 +6,8 @@ let allDoctorLinks = []
 let doctors = []
 
 async function detailPage(url) {
+
+
     console.log("detailPage : " + url)
     const browser = await puppeteer.launch({
         headless: 'new'
@@ -32,23 +34,73 @@ async function detailPage(url) {
     );
 
     const disease = await page.evaluate(() => {
-            return Array.from(document.querySelectorAll('[id="data-type-disease"] ul li'), (e) =>
-                (e.querySelector('a').innerText ?? e.querySelector('a').innerText)
-            )
+        const arrayList = []
+        const grabFromRow = (row) => row
+            .replace(/[\n\r]+|[\s]{2,}/g, ' ').trimStart().trimEnd()
+
+        const listData = document.querySelectorAll('[id="data-type-disease"]  li');
+        for (const li of listData) {
+            if (li.querySelector('a')) {
+                arrayList.push({title: li.querySelector('a').innerText});
+            } else {
+                arrayList.push({title: grabFromRow(li.innerText)});
+            }
         }
-    );
+        return arrayList
+    });
 
     const practice = await page.evaluate(() => {
-            return Array.from(document.querySelectorAll('[id="data-type-practice"] ul li'), (e) =>
-                (e.querySelector('a').innerText ?? e.querySelector('a').innerText)
-            )
+            const grabFromRowEl = (row, classname) => row
+                .querySelector(classname)
+                .innerText
+                .trim()
+
+            const arrayList = []
+            const grabFromRow = (row) => row
+                .replace(/[\n\r]+|[\s]{2,}/g, ' ').trimStart().trimEnd()
+
+            const listData = document.querySelectorAll('[id="data-type-practice"]  li');
+            for (const li of listData) {
+                if (li.querySelector('a')) {
+                    arrayList.push({title: li.querySelector('a').innerText});
+                } else {
+                    arrayList.push({title: grabFromRow(li.innerText)});
+                }
+            }
+            return arrayList
+
+
         }
     );
 
     const school = await page.evaluate(() => {
-            return Array.from(document.querySelectorAll('[data-test-id="doctor-exp-school"] ul li'), (e) =>
-                (e.innerText ?? e.innerText)
-            )
+            const arrayList = []
+            const grabFromRow = (row) => row
+                .replace(/[\n\r]+|[\s]{2,}/g, ' ').trimStart().trimEnd()
+
+            const detailHref = document.querySelector('[data-test-id="doctor-exp-school"] a');
+
+            if (detailHref) {
+                const listData = document.querySelectorAll('[modal-id="#data-type-school"] li');
+
+                for (const li of listData) {
+                    arrayList.push({title: grabFromRow(li.innerText)});
+                }
+
+                return arrayList
+            } else {
+                const listData = document.querySelectorAll('[data-test-id="doctor-exp-school"] .media-body ul li');
+                for (const li of listData) {
+                    if (li.querySelector('a')) {
+                        arrayList.push({title: li.querySelector('a').innerText});
+                    } else {
+                        arrayList.push({title: grabFromRow(li.innerText)});
+                    }
+                }
+                return arrayList
+            }
+
+
         }
     );
 
@@ -60,9 +112,19 @@ async function detailPage(url) {
     );
 
     const service = await page.evaluate(() => {
-            return Array.from(document.querySelectorAll('[id="profile-pricing"] .card-body [data-test-id="profile-pricing-list-element"] .media-body'), (e) =>
-                (e.querySelector('p').innerText ?? e.querySelector('p').innerText)
-            )
+            const arrayList = []
+            const grabFromRow = (row) => row
+                .replace(/[\n\r]+|[\s]{2,}/g, ' ').trimStart().trimEnd()
+
+            const listData = document.querySelectorAll('.card-body [data-test-id="profile-pricing-list-element"] .media-body');
+            for (const li of listData) {
+                if (li.querySelector('p')) {
+                    arrayList.push({title: grabFromRow(li.querySelector('p').innerText)});
+                } else {
+                    arrayList.push({title: grabFromRow(li.innerText)});
+                }
+            }
+            return arrayList
         }
     );
 
@@ -85,10 +147,6 @@ async function detailPage(url) {
     await browser.close();
 }
 
-async function trimClear(value) {
-    if (value)
-        return value.replace(/[\n\r]+|[\s]{2,}/g, ' ').trimStart().trimEnd()
-}
 
 async function download(uri, filename) {
     return new Promise((resolve, reject) => {
@@ -108,11 +166,10 @@ async function run(category = 'Psikoloji') {
     await page.goto(`https://www.doktortakvimi.com/ara?q=${search}`);
 
 
-    for (let i = 0; i < 499; i++) {
+    for (let i = 10; i < 499; i++) {
         const doctorLinks = await page.$$eval('#search-content .has-cal-active', (element) =>
             element.map(e => ({
-                url: e.querySelector('.card-body h3 a').href.split('#')[0],
-
+                url: e.querySelector(".card-body .media-body h3 a").href,
             })))
 
         for (let ix = 0; ix < doctorLinks.length; ix++) {
@@ -139,7 +196,7 @@ async function run(category = 'Psikoloji') {
         await page.waitForSelector("#search-content .has-cal-active")
     }
 
-    fs.writeFile('doctors.json', JSON.stringify(Array.from(new Set(doctors))), (err) => {
+    fs.writeFile(`doctors_${category}.json`, JSON.stringify(Array.from(new Set(doctors))), (err) => {
         if (err) throw err;
 
         console.log(`${doctors.length} item saved!`)
