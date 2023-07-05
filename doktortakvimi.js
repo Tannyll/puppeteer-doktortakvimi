@@ -16,6 +16,12 @@ async function detailPage(url) {
     const page = await browser.newPage();
     await page.goto(url);
 
+    const doctorId = await page.evaluate(() => {
+            const data = document.querySelector('.unified-doctor-content-column');
+            return data.getAttribute('data-doctor-id')
+        }
+    );
+
     const title = await page.evaluate(() => {
             const title = document.querySelector('.unified-doctor-header-info__name span');
             return title.innerText
@@ -28,8 +34,12 @@ async function detailPage(url) {
     );
 
     const about = await page.evaluate(() => {
-            const about = document.querySelector('[id="data-type-about" ] .modal-body p');
+            const isAbout = document.querySelector('[data-test-id="doctor-exp-about"]');
+
+            if(isAbout) {
+                const about = document.querySelector('[data-id="doctor-items-modals"] .modal-body p');
                 return about.innerText
+            }
         }
     );
 
@@ -130,6 +140,7 @@ async function detailPage(url) {
 
 
     const data = {
+        doctorId,
         title,
         fullName,
         about,
@@ -165,8 +176,8 @@ async function run(category = 'Psikoloji') {
     const page = await browser.newPage();
     await page.goto(`https://www.doktortakvimi.com/ara?q=${search}`);
 
-
-    for (let i = 10; i < 499; i++) {
+//499
+    for (let i = 0; i < 25; i++) {
         const doctorLinks = await page.$$eval('#search-content .has-cal-active', (element) =>
             element.map(e => ({
                 url: e.querySelector(".card-body .media-body h3 a").href,
