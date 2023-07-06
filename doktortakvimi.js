@@ -158,7 +158,7 @@ async function detailPage(url) {
     await browser.close();
 }
 
-
+// https://github.com/michaelkitas/Nodejs-Puppeteer-Tutorial/blob/master/index.js
 async function download(uri, filename) {
     return new Promise((resolve, reject) => {
         request.head(uri, function (err, res, body) {
@@ -196,6 +196,7 @@ async function download(uri, filename) {
             let fullName = "Null";
             let isActive = "Null";
             let clinic = "Null";
+
             try {
                 id = await page.evaluate(el => el.querySelector('div').getAttribute("data-result-id"), doctorHandle)
             } catch (e) {
@@ -221,17 +222,14 @@ async function download(uri, filename) {
             } catch (e) {
             }
 
-            if (url)
-                items.push({id, url, fullName, isActive, clinic})
-
-            //console.log(url)
+            items.push({id, url, fullName, isActive, clinic})
         }
 
         await page.waitForSelector('[data-test-id="pagination-next"]', {visible: true})
         const isDisabled = (await page.$('[data-test-id="pagination-next"]')) !== null;
         // False sayfalar tükendi.
 
-        console.log("pagination   ", isDisabled ? "Sayfa var": "Tükendi")
+        console.log("pagination   ", isDisabled ? "Sayfa var" : "Tükendi")
 
         isBtnNext = isDisabled;
 
@@ -249,7 +247,7 @@ async function download(uri, filename) {
     //console.log(items)
     console.log(items.length)
 
-    //await browser.close();
+    await browser.close();
 })();
 
 
