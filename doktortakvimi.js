@@ -36,7 +36,7 @@ async function detailPage(url) {
     const about = await page.evaluate(() => {
             const isAbout = document.querySelector('[data-test-id="doctor-exp-about"]');
 
-            if(isAbout) {
+            if (isAbout) {
                 const about = document.querySelector('[data-id="doctor-items-modals"] .modal-body p');
                 return about.innerText
             }
@@ -167,18 +167,106 @@ async function download(uri, filename) {
     });
 }
 
-async function run(category = 'Psikoloji') {
+(async () => {
+
     const browser = await puppeteer.launch({
-        headless: 'new'
+        headless: false,
+        defaultViewport: false,
+        userDataDir: './tmp',
+    });
+
+    //const search = encodeURIComponent(category)
+
+    const page = await browser.newPage();
+    await page.goto(`https://www.doktortakvimi.com/ara?q=Nefroloji&loc=Ankara`, {
+        waitUntil: "load"
+    });
+
+
+    let items = [];
+    let isBtnNext = false;
+    while (!isBtnNext) {
+        await page.waitForSelector("#search-content li")
+        const doctorHandles = await page.$$('#search-content li');
+
+        for (const doctorHandle of doctorHandles) {
+
+            let id = "Null";
+            let url = "Null";
+            let fullName = "Null";
+            let isActive = "Null";
+            let clinic = "Null";
+            try {
+                id = await page.evaluate(el => el.querySelector('div').getAttribute("data-result-id"), doctorHandle)
+            } catch (e) {
+            }
+
+            try {
+                url = await page.evaluate(el => el.querySelector("h3 > a").getAttribute("href"), doctorHandle)
+            } catch (e) {
+            }
+
+            try {
+                fullName = await page.evaluate(el => el.querySelector("h3 > a > span").innerText, doctorHandle)
+            } catch (e) {
+            }
+
+            try {
+                isActive = await page.evaluate(el => el.querySelector("h3 > span").getAttribute("data-original-title"), doctorHandle)
+            } catch (e) {
+            }
+
+            try {
+                clinic = await page.evaluate(el => el.querySelector("p.m-0.text-truncate.text-muted.font-weight-bold.address-details").innerText, doctorHandle)
+            } catch (e) {
+            }
+
+            if (url)
+                items.push({id, url, fullName, isActive, clinic})
+
+            //console.log(url)
+        }
+
+        await page.waitForSelector('[data-test-id="pagination-next"]', {visible: true})
+        const isDisabled = (await page.$('[data-test-id="pagination-next"]')) !== null;
+        // False sayfalar tükendi.
+
+        console.log("pagination   ", isDisabled ? "Sayfa var": "Tükendi")
+
+        isBtnNext = isDisabled;
+
+        if (isDisabled) {
+            await Promise.all([
+                page.click('[data-test-id="pagination-next"]'),
+                page.waitForNavigation({waitUntil: "networkidle2"})
+            ])
+
+        }
+
+
+    }
+    console.log("-----------------------------------------")
+    //console.log(items)
+    console.log(items.length)
+
+    //await browser.close();
+})();
+
+
+async function run({category = 'Nefroloji', city = 'Ankara'}) {
+    const browser = await puppeteer.launch({
+        headless: false,
+        defaultViewport: false,
+        userDataDir: './tmp',
     });
     const search = encodeURIComponent(category)
 
     const page = await browser.newPage();
-    await page.goto(`https://www.doktortakvimi.com/ara?q=${search}`);
+    await page.goto(`https://www.doktortakvimi.com/ara?q=${search}&loc=${city}`);
 
 //499
     for (let i = 0; i < 25; i++) {
-        const doctorLinks = await page.$$eval('#search-content .has-cal-active', (element) =>
+        const doctorLinks = await page.$$('#search-content .has-cal-active', (element) =>
             element.map(e => ({
                 url: e.querySelector(".card-body .media-body h3 a").href,
             })))
@@ -217,4 +305,4 @@ async function run(category = 'Psikoloji') {
     await browser.close();
 }
 
-run('Psikoloji');
+//run({category: 'Nefroloji', city: 'Ankara'});
