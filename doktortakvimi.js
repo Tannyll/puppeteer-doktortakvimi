@@ -178,15 +178,16 @@ async function download(uri, filename) {
     //const search = encodeURIComponent(category)
 
     const page = await browser.newPage();
-    await page.goto(`https://www.doktortakvimi.com/ara?q=Nefroloji&loc=Ankara`, {
+    await page.goto(`https://www.doktortakvimi.com/ara?q=Nefroloji&loc=Ankara&page=2`, {
         waitUntil: "load"
     });
 
 
+
     let items = [];
-    let isBtnNext = false;
-    while (!isBtnNext) {
-        await page.waitForSelector("#search-content li")
+    let isBtnNext = true;
+    while (isBtnNext) {
+        //await page.waitForSelector("#search-content li")
         const doctorHandles = await page.$$('#search-content li');
 
         for (const doctorHandle of doctorHandles) {
@@ -225,8 +226,10 @@ async function download(uri, filename) {
             items.push({id, url, fullName, isActive, clinic})
         }
 
-        await page.waitForSelector('[data-test-id="pagination-next"]', {visible: true})
+        //await page.waitForSelector('[data-test-id="pagination-next"]', {visible: true})
         const isDisabled = (await page.$('[data-test-id="pagination-next"]')) !== null;
+
+
         // False sayfalar tükendi.
 
         console.log("pagination   ", isDisabled ? "Sayfa var" : "Tükendi")
@@ -234,18 +237,35 @@ async function download(uri, filename) {
         isBtnNext = isDisabled;
 
         if (isDisabled) {
+
+            try {
+                //const pageNumber = await page.$('[data-test-id="listing-pagination"]').querySelector('ul .page-item .active a').href
+                const pageNumber = await page.xpath('//*[@id="search-listing"]/div[2]/div[3]/main/div[2]/div[1]/div[3]/aside/ul/li[5]/a').innerText
+                console.log(`Page Number. : ${pageNumber}`)
+            } catch (e) {
+                console.log(`Page Number : 0`)
+            }
+
             await Promise.all([
                 page.click('[data-test-id="pagination-next"]'),
-                page.waitForNavigation({waitUntil: "networkidle2"})
+                //page.waitForNavigation({waitUntil: "networkidle2"})
             ])
 
         }
+
+
 
 
     }
     console.log("-----------------------------------------")
     //console.log(items)
     console.log(items.length)
+
+    fs.writeFile('courses.json', JSON.stringify(items), (err) => {
+        if (err) throw err;
+
+        console.log('file saved!')
+    })
 
     await browser.close();
 })();
