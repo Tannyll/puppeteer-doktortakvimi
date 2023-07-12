@@ -5,5 +5,3 @@
 hepsiburada.js,6\0\60f3605eb1d695339443f1fd4aed0cc7ea9c2716
 @
 doktortakvimi.js,5\8\58b9c23c56c2eeb8431543bfad6047cf8d37ef28
-C
-doktortakvimiOld.js,6/7/679cf00d805691e20cf1e3ea28daad3ab257a531

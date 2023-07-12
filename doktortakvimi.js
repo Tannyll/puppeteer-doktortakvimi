@@ -167,21 +167,27 @@ async function download(uri, filename) {
     });
 }
 
-(async () => {
+
+(async (category = 'Psikoloji', city = 'all') => {
 
     const browser = await puppeteer.launch({
         headless: false,
         defaultViewport: false,
-        userDataDir: './tmp',
+        executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        userDataDir: '/Users/serdar/Library/Application Support/Google/Chrome',
     });
 
     //const search = encodeURIComponent(category)
 
     const page = await browser.newPage();
-    await page.goto(`https://www.doktortakvimi.com/ara?q=Nefroloji&loc=Ankara`, {
+
+    const pageUrl = `https://www.doktortakvimi.com/ara?q=${category}`;
+    //const pageUrl = `https://www.doktortakvimi.com/ara?q=${category}&loc=${city}`;
+    //const pageUrl = `https://www.doktortakvimi.com/ara?q=${category}&page=190`;
+
+    await page.goto(pageUrl, {
         waitUntil: "load"
     });
-
 
 
     let items = [];
@@ -229,97 +235,34 @@ async function download(uri, filename) {
         //await page.waitForSelector('[data-test-id="pagination-next"]', {visible: true})
         const isDisabled = (await page.$('[data-test-id="pagination-next"]')) !== null;
 
-
-        // False sayfalar tükendi.
-
-        console.log("pagination   ", isDisabled ? "Sayfa var" : "Tükendi")
+        try {
+            const pageNumber = await page.evaluate(() => {
+                    const data = document.querySelector('[data-test-id="listing-pagination"] .active');
+                    return data.querySelector("a").innerText
+                }
+            );
+            console.log("Pagination   ", isDisabled ? `Page of : ${pageNumber}` : "Tükendi")
+        } catch (e) {
+            console.log(`Page Number : 0`)
+        }
 
         isBtnNext = isDisabled;
 
         if (isDisabled) {
-
-            try {
-                const pageNumber = await page.$('[data-test-id="listing-pagination"] .page-item .active').querySelector('a').innerText
-                console.log(`Page Number. : ${pageNumber}`)
-            } catch (e) {
-                console.log(`Page Number : 0`)
-            }
-
             await Promise.all([
                 page.click('[data-test-id="pagination-next"]'),
                 page.waitForNavigation({waitUntil: "domcontentloaded"})
             ])
 
         }
-
-
-
-
     }
     console.log("-----------------------------------------")
     //console.log(items)
     console.log(items.length)
 
-    fs.writeFile('courses.json', JSON.stringify(items), (err) => {
+    fs.writeFile(`${category}_${city}.json`, JSON.stringify(items), (err) => {
         if (err) throw err;
-
-        console.log('file saved!')
     })
-
+    console.log(`All done, check the json file. ✨`)
     await browser.close();
 })();
-
-
-async function run({category = 'Nefroloji', city = 'Ankara'}) {
-    const browser = await puppeteer.launch({
-        headless: false,
-        defaultViewport: false,
-        userDataDir: './tmp',
-    });
-    const search = encodeURIComponent(category)
-
-    const page = await browser.newPage();
-    await page.goto(`https://www.doktortakvimi.com/ara?q=${search}&loc=${city}`);
-
-//499
-    for (let i = 0; i < 25; i++) {
-        const doctorLinks = await page.$$('#search-content .has-cal-active', (element) =>
-            element.map(e => ({
-                url: e.querySelector(".card-body .media-body h3 a").href,
-            })))
-
-        for (let ix = 0; ix < doctorLinks.length; ix++) {
-            await detailPage(doctorLinks[ix].url)
-        }
-
-
-        allDoctorLinks.push(...doctorLinks)
-
-        // pagination
-        await page.evaluate(() => {
-            const el = HTMLAnchorElement = document.querySelector(
-                'a[data-test-id="pagination-next"]'
-            );
-            el.click();
-        });
-
-        const pageNumber = i + 2;
-        await page.waitForResponse((response) => {
-            console.log("Page : " + pageNumber)
-            return response.url().includes(`&page=${pageNumber}`)
-        })
-
-        await page.waitForSelector("#search-content .has-cal-active")
-    }
-
-    fs.writeFile(`doctors_${category}.json`, JSON.stringify(Array.from(new Set(doctors))), (err) => {
-        if (err) throw err;
-
-        console.log(`${doctors.length} item saved!`)
-    })
-
-
-    await browser.close();
-}
-
-//run({category: 'Nefroloji', city: 'Ankara'});
