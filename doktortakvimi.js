@@ -178,7 +178,7 @@ async function download(uri, filename) {
     //const search = encodeURIComponent(category)
 
     const page = await browser.newPage();
-    await page.goto(`https://www.doktortakvimi.com/ara?q=Nefroloji&loc=Ankara&page=2`, {
+    await page.goto(`https://www.doktortakvimi.com/ara?q=Nefroloji&loc=Ankara`, {
         waitUntil: "load"
     });
 
@@ -239,8 +239,7 @@ async function download(uri, filename) {
         if (isDisabled) {
 
             try {
-                //const pageNumber = await page.$('[data-test-id="listing-pagination"]').querySelector('ul .page-item .active a').href
-                const pageNumber = await page.xpath('//*[@id="search-listing"]/div[2]/div[3]/main/div[2]/div[1]/div[3]/aside/ul/li[5]/a').innerText
+                const pageNumber = await page.$('[data-test-id="listing-pagination"] .page-item .active').querySelector('a').innerText
                 console.log(`Page Number. : ${pageNumber}`)
             } catch (e) {
                 console.log(`Page Number : 0`)
@@ -248,7 +247,7 @@ async function download(uri, filename) {
 
             await Promise.all([
                 page.click('[data-test-id="pagination-next"]'),
-                //page.waitForNavigation({waitUntil: "networkidle2"})
+                page.waitForNavigation({waitUntil: "domcontentloaded"})
             ])
 
         }
