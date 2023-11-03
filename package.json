@@ -7,6 +7,7 @@
     "start:traversymedia": "node traversymedia.js",
     "start:hepsiburada": "node hepsiburada.js",
     "start:doktortakvimi": "node doktortakvimi.js",
+    "start:doktortakvimi_cluster": "node doktortakvimi_cluster.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

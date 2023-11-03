@@ -168,7 +168,7 @@ async function download(uri, filename) {
 }
 
 
-(async (category = 'Psikoloji', city = 'all') => {
+(async (category = 'Ortopedi Ve Travmatoloji', city = 'all') => {
 
     const browser = await puppeteer.launch({
         headless: false,
@@ -189,12 +189,23 @@ async function download(uri, filename) {
         waitUntil: "load"
     });
 
+    let categoryHeadline = "Null";
+    categoryHeadline = await page.evaluate(() => {
+            return document.querySelector('div > div > [data-test-id="search-headline"]').innerText
+        }
+    );
+    console.log(categoryHeadline)
 
     let items = [];
     let isBtnNext = true;
     while (isBtnNext) {
         //await page.waitForSelector("#search-content li")
+
+
         const doctorHandles = await page.$$('#search-content li');
+
+
+
 
         for (const doctorHandle of doctorHandles) {
 
@@ -203,6 +214,7 @@ async function download(uri, filename) {
             let fullName = "Null";
             let isActive = "Null";
             let clinic = "Null";
+
 
             try {
                 id = await page.evaluate(el => el.querySelector('div').getAttribute("data-result-id"), doctorHandle)
@@ -228,8 +240,8 @@ async function download(uri, filename) {
                 clinic = await page.evaluate(el => el.querySelector("p.m-0.text-truncate.text-muted.font-weight-bold.address-details").innerText, doctorHandle)
             } catch (e) {
             }
-
-            items.push({id, url, fullName, isActive, clinic})
+            if (id !== "Null" && url !== "Null")
+                items.push({id, url, fullName, isActive, clinic, category: categoryHeadline})
         }
 
         //await page.waitForSelector('[data-test-id="pagination-next"]', {visible: true})
@@ -241,8 +253,11 @@ async function download(uri, filename) {
                     return data.querySelector("a").innerText
                 }
             );
+
+
             console.log("Pagination   ", isDisabled ? `Page of : ${pageNumber}` : "Tükendi")
         } catch (e) {
+            console.log(e)
             console.log(`Page Number : 0`)
         }
 
