@@ -1,3 +1,4 @@
+/*
 const puppeteer = require("puppeteer");
 const fs = require('fs');
 const request = require('request');
@@ -96,4 +97,4 @@ const {Cluster} = require('puppeteer-cluster');
 
     await cluster.idle();
     await cluster.close();
-})();
+})();*/
