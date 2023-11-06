@@ -1,21 +1,3 @@
-2023/11/04-17:06:14.898 610c Reusing MANIFEST C:\Users\LENOVO\repos\repos\Training\puppeteer\user_data\main\Default\Local Storage\leveldb/MANIFEST-000001
-2023/11/04-17:06:14.912 610c Recovering log #148
-2023/11/04-17:06:14.914 610c Level-0 table #151: started
-2023/11/04-17:06:14.923 610c Level-0 table #151: 36093 bytes OK
-2023/11/04-17:06:14.924 610c Recovering log #150
-2023/11/04-17:06:14.925 610c Level-0 table #152: started
-2023/11/04-17:06:14.931 610c Level-0 table #152: 36093 bytes OK
-2023/11/04-17:06:14.937 610c Delete type=0 #148
-2023/11/04-17:06:14.937 610c Delete type=0 #150
-2023/11/04-17:06:14.945 97a0 Compacting 5@0 + 1@1 files
-2023/11/04-17:06:14.959 97a0 Generated table #154@0: 15 keys, 36542 bytes
-2023/11/04-17:06:14.959 97a0 Compacted 5@0 + 1@1 files => 36542 bytes
-2023/11/04-17:06:14.960 97a0 compacted to: files[ 0 1 0 0 0 0 0 ]
-2023/11/04-17:06:14.961 97a0 Delete type=2 #140
-2023/11/04-17:06:14.961 97a0 Delete type=2 #142
-2023/11/04-17:06:14.961 97a0 Delete type=2 #145
-2023/11/04-17:06:14.961 97a0 Delete type=2 #149
-2023/11/04-17:06:14.961 97a0 Delete type=2 #151
-2023/11/04-17:06:14.961 97a0 Delete type=2 #152
-2023/11/04-17:06:45.997 5ec0 Level-0 table #156: started
-2023/11/04-17:06:46.003 5ec0 Level-0 table #156: 37785 bytes OK
+2023/11/06-17:37:35.332 8e2c Reusing MANIFEST C:\Users\serda\WebstormProjects\puppeteer-doktortakvimi\user_data\main\Default\Local Storage\leveldb/MANIFEST-000001
+2023/11/06-17:37:35.333 8e2c Recovering log #3
+2023/11/06-17:37:35.335 8e2c Reusing old log C:\Users\serda\WebstormProjects\puppeteer-doktortakvimi\user_data\main\Default\Local Storage\leveldb/000003.log 

@@ -1,11 +1,15 @@
-2023/11/04-17:06:15.657 610c Reusing MANIFEST C:\Users\LENOVO\repos\repos\Training\puppeteer\user_data\main\Default\Session Storage/MANIFEST-000001
-2023/11/04-17:06:15.659 610c Recovering log #23
-2023/11/04-17:06:15.659 610c Level-0 table #26: started
-2023/11/04-17:06:15.665 610c Level-0 table #26: 17933 bytes OK
-2023/11/04-17:06:15.666 610c Recovering log #26
-2023/11/04-17:06:15.668 610c Reusing old log C:\Users\LENOVO\repos\repos\Training\puppeteer\user_data\main\Default\Session Storage/000026.log 
-2023/11/04-17:06:15.670 610c Delete type=0 #23
-2023/11/04-17:06:15.670 610c Delete type=2 #27
-2023/11/04-17:06:43.072 97a0 Level-0 table #28: started
-2023/11/04-17:06:43.078 97a0 Level-0 table #28: 18560 bytes OK
-2023/11/04-17:06:43.080 97a0 Delete type=0 #26
+2023/11/06-17:37:35.987 8e2c Reusing MANIFEST C:\Users\serda\WebstormProjects\puppeteer-doktortakvimi\user_data\main\Default\Session Storage/MANIFEST-000001
+2023/11/06-17:37:35.988 8e2c Recovering log #62
+2023/11/06-17:37:35.990 8e2c Reusing old log C:\Users\serda\WebstormProjects\puppeteer-doktortakvimi\user_data\main\Default\Session Storage/000062.log 
+2023/11/06-17:37:38.176 e3c8 Level-0 table #66: started
+2023/11/06-17:37:38.184 e3c8 Level-0 table #66: 13403 bytes OK
+2023/11/06-17:37:38.186 e3c8 Delete type=0 #62
+2023/11/06-17:37:38.187 e3c8 Compacting 4@0 + 1@1 files
+2023/11/06-17:37:38.192 e3c8 Generated table #67@0: 1704 keys, 51358 bytes
+2023/11/06-17:37:38.192 e3c8 Compacted 4@0 + 1@1 files => 51358 bytes
+2023/11/06-17:37:38.192 e3c8 compacted to: files[ 0 1 0 0 0 0 0 ]
+2023/11/06-17:37:38.193 e3c8 Delete type=2 #55
+2023/11/06-17:37:38.193 e3c8 Delete type=2 #58
+2023/11/06-17:37:38.193 e3c8 Delete type=2 #60
+2023/11/06-17:37:38.193 e3c8 Delete type=2 #63
+2023/11/06-17:37:38.193 e3c8 Delete type=2 #66

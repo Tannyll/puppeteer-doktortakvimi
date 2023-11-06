@@ -1,47 +1,20 @@
-const puppeteer = require("puppeteer");
-const fs = require('fs');
-const {Cluster} = require("puppeteer-cluster");
-const {join} = require("path");
+import {Cluster} from "puppeteer-cluster";
+import {join} from "path"
+import { pipeline }  from "stream/promises"
 
-const listData = []
-let productsList = []
-let product = {}
+import fs from "fs"
+import { fileURLToPath } from 'url';
+import * as path from "path";
+import * as https from "https";
 
-//linkFetcher("https://www.trendyol.com/kadin-ayakkabi-x-g1-c114")
-async function linkFetcher(url) {
-
-    const browser = await puppeteer.launch({
-        headless: 'new'
-    });
-
-    const page = await browser.newPage();
-    await page.goto(url);
-
-    const urls = await page.$$eval('.prdct-cntnr-wrppr .p-card-wrppr', (element) =>
-        element.map(e => ({
-            url: 'https://www.trendyol.com' + e.querySelector('[data-id] div a').getAttribute('href'),
-            id: e.getAttribute('data-id'),
-
-        })))
-
-    await browser.close();
-
-    fs.writeFile(`urls.json`, JSON.stringify(urls), (err) => {
-        console.log(urls)
-        if (err) throw err;
-    })
-};
-
-//https://blog.francium.tech/web-scraping-with-puppeteer-ca9e5c1b7802
 
 (async () => {
-
-
     let urlList = []
-
-
+    let productsList = []
     const data = fs.readFileSync('urls.json', 'utf8');
     urlList = JSON.parse(data);
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
 
     console.log(`Chrome Launched...`);
 
@@ -75,7 +48,7 @@ async function linkFetcher(url) {
             waitUntil: 'networkidle2'
         });
 
-        productsList = await loadData(page)
+        productsList.push(await loadData(page))
 
         await saveData(productsList)
 
@@ -92,6 +65,7 @@ async function linkFetcher(url) {
     console.log(`Chrome Closed.`);
 })();
 
+
 const saveData = async (data) => {
     fs.writeFile('data/products.json', JSON.stringify(data, null, 2), function (err) {
         if (err) throw err;
@@ -99,10 +73,9 @@ const saveData = async (data) => {
     });
 }
 const loadData = async (page) => {
-
     //await page.screenshot({path: 'data/' + await page.title() + '.png'});
-
     const cookies = await page.cookies()
+    const url = await page.url()
     fs.writeFile('data/cookie.json', JSON.stringify(cookies, null, 2), function (err) {
         if (err) throw err;
         console.log('completed write of cookies');
@@ -196,10 +169,11 @@ const loadData = async (page) => {
 
     const images = await page.evaluate(() => {
         try {
-            //const data = document.querySelector('[data-drroot="slicing-attributes"] a');
+            //const data = document.querySelector('a[class^='slc-img'] img');
             const allImage = []
             const data = document.querySelectorAll('[data-drroot="slicing-attributes"] a > img');
             data.forEach((element) => {
+                download(element.src);
                 allImage.push(element.src)
             })
             return allImage
@@ -208,8 +182,9 @@ const loadData = async (page) => {
     });
 
 
-    productsList.push({
+    return {
         dataFragmentId,
+        url,
         title: productTitle,
         details,
         productFeatures,
@@ -218,12 +193,23 @@ const loadData = async (page) => {
         price,
         size,
         brand,
-        images
-    })
-
-    return productsList
+        images,
+        updatedAt: new Date()
+    }
 }
-
+async function download(url) {
+    return new Promise(async (onSuccess) => {
+        https.get(url, async (res) => {
+            let fileName = url.split("/").pop()
+            const fileWriteStream = fs.createWriteStream(path.join(__dirname, __filename), {
+                autoClose: true,
+                flags: "w",
+            })
+            await pipeline(res, fileWriteStream)
+            onSuccess("success")
+        })
+    })
+}
 
 /*
 cron.schedule('*!/15 17-19 * * 1-5', async () => {
