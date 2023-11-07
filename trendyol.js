@@ -1,11 +1,10 @@
 import {Cluster} from "puppeteer-cluster";
 import {join} from "path"
-import { pipeline }  from "stream/promises"
 
 import fs from "fs"
-import { fileURLToPath } from 'url';
+import {fileURLToPath} from 'url';
 import * as path from "path";
-import * as https from "https";
+import {Axios} from "axios";
 
 
 (async () => {
@@ -21,7 +20,7 @@ import * as https from "https";
 
     const cluster = await Cluster.launch({
         concurrency: Cluster.CONCURRENCY_PAGE,
-        maxConcurrency: 3,
+        maxConcurrency: 6,
         skipDuplicateUrls: true,
 
         monitor: true,
@@ -48,10 +47,13 @@ import * as https from "https";
             waitUntil: 'networkidle2'
         });
 
-        productsList.push(await loadData(page))
+        const product = await loadData(page)
+
+        productsList.push(product)
+
+        await downloadImage(product.images,product.dataFragmentId)
 
         await saveData(productsList)
-
     });
 
     for (let link of urlList) {
@@ -65,21 +67,14 @@ import * as https from "https";
     console.log(`Chrome Closed.`);
 })();
 
-
-const saveData = async (data) => {
-    fs.writeFile('data/products.json', JSON.stringify(data, null, 2), function (err) {
-        if (err) throw err;
-        console.log('completed write of products');
-    });
-}
 const loadData = async (page) => {
     //await page.screenshot({path: 'data/' + await page.title() + '.png'});
-    const cookies = await page.cookies()
+    // const cookies = await page.cookies()
     const url = await page.url()
-    fs.writeFile('data/cookie.json', JSON.stringify(cookies, null, 2), function (err) {
-        if (err) throw err;
-        console.log('completed write of cookies');
-    });
+    /*    fs.writeFile('data/cookie.json', JSON.stringify(cookies, null, 2), function (err) {
+            if (err) throw err;
+            console.log('completed write of cookies');
+        });*/
 
     const dataFragmentId = await page.evaluate(() => {
         try {
@@ -89,7 +84,6 @@ const loadData = async (page) => {
         } catch (e) {
         }
     });
-
 
     const productTitle = await page.evaluate(() => {
         try {
@@ -172,15 +166,14 @@ const loadData = async (page) => {
             //const data = document.querySelector('a[class^='slc-img'] img');
             const allImage = []
             const data = document.querySelectorAll('[data-drroot="slicing-attributes"] a > img');
+
             data.forEach((element) => {
-                download(element.src);
                 allImage.push(element.src)
             })
             return allImage
         } catch (e) {
         }
     });
-
 
     return {
         dataFragmentId,
@@ -197,18 +190,63 @@ const loadData = async (page) => {
         updatedAt: new Date()
     }
 }
-async function download(url) {
-    return new Promise(async (onSuccess) => {
-        https.get(url, async (res) => {
-            let fileName = url.split("/").pop()
-            const fileWriteStream = fs.createWriteStream(path.join(__dirname, __filename), {
-                autoClose: true,
-                flags: "w",
-            })
-            await pipeline(res, fileWriteStream)
-            onSuccess("success")
-        })
-    })
+
+const saveData = async (data) => {
+    fs.writeFile('data/products.json', JSON.stringify(data, null, 2), function (err) {
+        if (err) throw err;
+        console.log('completed write of products');
+    });
+}
+
+const downloadImage = async (images, dataFragmentId) => {
+
+        //console.log(product.images)
+        const __filename = fileURLToPath(import.meta.url);
+        const __dirname = path.dirname(__filename);
+
+        for (const url of images) {
+            const image = await fetch(url)
+            const imageBlog = await image.blob()
+
+
+            const fileName = `${new Date().getTime().toString()}${url.split('/').pop()}`
+            const filePath = `${__dirname}\\data\\images\\${dataFragmentId.split('-')[0]}\\`
+            const fullPath = filePath + fileName
+
+            console.log(imageBlog)
+            //console.log(filePath)
+
+            const buffer = Buffer.from(await imageBlog.arrayBuffer());
+
+            try {
+                fs.mkdir(filePath, {recursive: true}, () => console.log("Created folder."))
+                fs.writeFile(fullPath, buffer, () => console.log('saved image.'));
+
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
+
+}
+
+
+async function download(uri) {
+    const image = await fetch(uri)
+    const imageBlog = await image.blob()
+
+
+    const fileName = uri.split('/').pop();
+    const writeFile = fs.writeFile(imageBlog);
+    writeFile.close()
+
+}
+
+function blobToFile(theBlob, fileName) {
+    //A Blob() is almost a File() - it's just missing the two properties below which we will add
+    theBlob.lastModifiedDate = new Date();
+    theBlob.name = fileName;
+    return theBlob;
 }
 
 /*
