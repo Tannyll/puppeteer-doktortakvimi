@@ -163,12 +163,21 @@ const loadData = async (page) => {
 
     const images = await page.evaluate(() => {
         try {
+            //const data = document.querySelector('.product-slide-container .product-slide img');   // önce .product-slide-container .product-slide img hover olacak sonrasında .gallery-modal-content img seçilecek
+            //const data = document.querySelector('.gallery-modal-content img');   // hover oldugunda bu image çekilecek
             //const data = document.querySelector('a[class^='slc-img'] img');
             const allImage = []
-            const data = document.querySelectorAll('[data-drroot="slicing-attributes"] a > img');
+            const data = document.querySelectorAll('.product-slide-container .product-slide');
 
             data.forEach((element) => {
-                allImage.push(element.src)
+                 element.hover()
+                console.log(element)
+                const images = document.querySelectorAll('.gallery-modal-content img');
+                images.forEach((image)=> {
+                    console.log(image)
+                    allImage.push(image.src)
+                })
+
             })
             return allImage
         } catch (e) {
