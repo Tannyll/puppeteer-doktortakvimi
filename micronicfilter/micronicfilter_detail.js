@@ -3,7 +3,6 @@ import {join} from "path";
 import fs from "fs";
 import {fileURLToPath} from "url";
 import {Cluster} from "puppeteer-cluster";
-import htmlEncode, {stringEscape} from "../util/helper.js";
 
 
 (async () => {
@@ -41,7 +40,6 @@ import htmlEncode, {stringEscape} from "../util/helper.js";
 
     await cluster.task(async ({page, data: data}) => {
 
-
         await page.goto(data.url, {
             waitUntil: 'networkidle2'
         });
@@ -53,9 +51,10 @@ import htmlEncode, {stringEscape} from "../util/helper.js";
         //await downloadImage(product.images, product.dataFragmentId)
 
         await saveData(productsList)
+
     });
 
-    for (let link of urlList) {
+    for (let link of urlList[0]) {
         console.log('Push in queue : ', link.url);
         await cluster.queue(link)
     }
@@ -67,16 +66,9 @@ import htmlEncode, {stringEscape} from "../util/helper.js";
 })();
 
 const loadData = async (page,data) => {
-    //await page.screenshot({path: 'data/' + await page.title() + '.png'});
-    // const cookies = await page.cookies()
-    const url = await page.url()
-    /*    fs.writeFile('data/cookie.json', JSON.stringify(cookies, null, 2), function (err) {
-            if (err) throw err;
-            console.log('completed write of cookies');
-        });*/
-
     const productInformation = await page.$$eval('#firstTab table tbody tr', (element) => {
             try {
+
                 return element.map(e => ({
                     title: e.querySelector('th').innerText.trim(),
                     value: e.querySelector('td em').innerText.trim(),
@@ -96,7 +88,7 @@ const loadData = async (page,data) => {
             }
         }
     )
-
+//
     const additions = await page.$$eval('#thirdTab table:nth-child(1)  tbody tr:nth-child(n+2)', (element) => {
             try {
                 return element.map(e => ({
@@ -117,14 +109,17 @@ const loadData = async (page,data) => {
             }
         }
     )
-    console.log(productInformation)
+
     return {
         id:data.id,
-        product: {...productInformation},
-        dimensions: {...dimensions},
-        additions: {...additions},
+        product: productInformation,
+        dimensions: dimensions,
+        additions: additions,
     }
 }
+
+
+
 
 const getElementData = async (page, element) => {
     await page.evaluate(() => {
@@ -135,7 +130,7 @@ const getElementData = async (page, element) => {
     });
 }
 const saveData = async (data) => {
-    fs.writeFile('data/products.json', JSON.stringify(data, null, 2), function (err) {
+    fs.writeFile('products.json', JSON.stringify(data, null, 2), function (err) {
         if (err) throw err;
         console.log('completed write of products');
     });

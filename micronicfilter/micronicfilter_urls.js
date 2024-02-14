@@ -1,73 +1,110 @@
-import fs from "fs";
-import {join} from "path";
+import path, {join} from "path";
 import {fileURLToPath} from "url";
 import puppeteer from "puppeteer";
-import path from "path";
+import writeJsonFile from "../util/helper.js";
 
-(async () => {
 
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-    const browser = await puppeteer.launch({
-        headless: false,
-        executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-        userDataDir: join(__dirname, 'user_data/main'),
+const browser = await puppeteer.launch({
+    headless: false,
+    executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    userDataDir: join(__dirname, 'user_data/main'),
 //        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    });
+});
 
-    const page = await browser.newPage();
-    await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
-    await page.setViewport({width: 1200, height: 800});
-    await page.goto("https://catalog.micronicfilter.com/product-search-result/?code=3S4", {
-        waitUntil: "networkidle2"
-    });
+const page = await browser.newPage();
+await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
+//await page.setViewport({width: 1200, height: 800});
+await page.goto("https://catalog.micronicfilter.com/product-search-result/?page=2&code=3S4", {
+    waitUntil: "networkidle2"
+});
+
+
+async function getData(page) {
     let items = []
 
-    //await ScrollDown(page, {size: 500, delay: 600, stepsLimit: 30})
-
-    await autoScroll(page).then(async () => {
-
-        items = await page.$$eval('#tableDetail a[href^="/product/"', (element) =>
-            element.map(e => ({
+    items = await page.$$eval('#tableDetail a[href^="/product/"', (element) =>
+        element.map(e => ({
                 id: e.getAttribute('href').split('/')[2],
                 url: 'https://catalog.micronicfilter.com' + e.getAttribute('href')
-            })))
-    })
-
-
-    //const items = await scrapeItems(page);
-
-
-    console.log(items)
-    fs.writeFileSync(`urls.json`, JSON.stringify(items), (err) => {
-        console.log(items)
-        console.log(items.length)
-        if (err) throw err;
-    })
-
-    await browser.close();
-
-})();
-
-function wait(ms) {
-    return new Promise((resolve) => setTimeout(() => resolve(), ms));
+            })
+        ))
+    return items
 }
 
-function extractItems() {
+async function hasPage(page) {
+    return await page.$x("//a[starts-with(@href, '?page') and contains(text(),'next')]")
 
-    const extractedElements = document.querySelectorAll('.prdct-cntnr-wrppr .p-card-wrppr');
-    const items = [];
-    for (let element of extractedElements) {
+}
 
-        items.push(
-            {
-                url: 'https://www.trendyol.com' + element.querySelector('[data-id] div a').getAttribute('href'),
-                id: element.getAttribute('data-id'),
-            });
+async function goNext(page) {
+    await page.waitForXPath("//a[starts-with(@href, '?page') and contains(text(),'next')]")
+    const firstLink = await page.waitForSelector("#pagination > ul > li:nth-child(4) > a")
+    await page.click("#pagination > ul > li:nth-child(4) > a")
+
+}
+
+let allData = []
+while (true) {
+    let data = await getData(page)
+    allData.push(data)
+    console.log("Row : ", data.length)
+    console.log("Page : ", allData.length)
+    let hasNext = await hasPage(page);
+    if (hasNext) {
+        await goNext(page)
+    } else {
+        break
     }
-    return items;
 }
+//console.log(allData)
+
+writeJsonFile(allData)
+await browser.close();
+
+
+/*let items = []
+
+items = await page.$$eval('#tableDetail a[href^="/product/"', (element) =>
+    element.map(e => ({
+            id: e.getAttribute('href').split('/')[2],
+            url: 'https://catalog.micronicfilter.com' + e.getAttribute('href')
+        })
+    ))
+
+
+//await page.waitForNavigation()
+
+
+//const xp = "//a[starts-with(@href, '?page') and contains(text(),'next')]";
+//const pagination = await page.$x(xp)
+//let nextLink = await pagination[0].evaluate(element => element.href)
+//console.log("pagination :::::: ", nextLink)
+//await page.waitForXPath(xp,1000);
+//await page.goto(nextLink)
+
+
+console.log(items)
+console.log(items.length)
+writeJsonFile(items)
+await page.evaluate(() => {
+    window.scrollBy(0, window.innerHeight);
+});
+
+const pagination0 = await page.$("#pagination > ul > li:nth-child(4) > a")
+await page.waitForSelector("#pagination > ul > li:nth-child(4) > a")
+await page.click("#pagination > ul > li:nth-child(4) > a")
+
+/!*     const pagination = await page.$x("//a[starts-with(@href, '?page') and contains(text(),'next')]")
+     await pagination[0].click()
+     await page.waitForXPath("//a[starts-with(@href, '?page') and contains(text(),'next')]")*!/
+
+
+//await page.close()
+//await browser.close();*/
+
 
 async function autoScroll(page) {
     await page.evaluate(async () => {
@@ -86,6 +123,27 @@ async function autoScroll(page) {
             }, 100);
         });
     });
+
+}
+
+
+function wait(ms) {
+    return new Promise((resolve) => setTimeout(() => resolve(), ms));
+}
+
+function extractItems() {
+
+    const extractedElements = document.querySelectorAll('.prdct-cntnr-wrppr .p-card-wrppr');
+    const items = [];
+    for (let element of extractedElements) {
+
+        items.push(
+            {
+                url: 'https://www.trendyol.com' + element.querySelector('[data-id] div a').getAttribute('href'),
+                id: element.getAttribute('data-id'),
+            });
+    }
+    return items;
 }
 
 function extractItem(page) {

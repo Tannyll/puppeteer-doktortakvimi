@@ -1,0 +1,1154 @@
+[
+  {
+    "id": "fdc2667a-cb38-4fe9-a235-37faeaafaf76",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4042"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017770591"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "7256c66e-bd9e-48f1-87c9-01dce6a5a5b2",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4043"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017770592"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "d489e3e5-2ac1-4c02-9e84-7144e7f4b3c0",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4040"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017770589"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "77.0"
+      },
+      {
+        "title": "B",
+        "value": "62.0"
+      },
+      {
+        "title": "C",
+        "value": "70.0"
+      },
+      {
+        "title": "G",
+        "value": "M 16 X 1.5"
+      },
+      {
+        "title": "H",
+        "value": "130.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "f225014a-4b54-423a-a26b-b9b7ef7e0aae",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4041"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017770590"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "94.0"
+      },
+      {
+        "title": "B",
+        "value": "63.0"
+      },
+      {
+        "title": "C",
+        "value": "72.0"
+      },
+      {
+        "title": "G",
+        "value": "1-14 UNS-2B"
+      },
+      {
+        "title": "H",
+        "value": "203.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "843b5883-5b66-417f-bac0-802475555766",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4045"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017773688"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "88.0"
+      },
+      {
+        "title": "B",
+        "value": "69.0"
+      },
+      {
+        "title": "H",
+        "value": "154.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "5d439702-13b5-43b5-a555-4046f29a74c8",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4044"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017770593"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "108.0"
+      },
+      {
+        "title": "G",
+        "value": "1-14 UNS"
+      },
+      {
+        "title": "H",
+        "value": "158.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "b67a4a41-4b48-4f1e-90ea-c2772d708749",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4050"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017770594"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "f7f08460-fb85-4ef4-9b36-77c22d87661d",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4051"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017771252"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "d91a094b-7b10-4856-a401-6589e33c50b2",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4052"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017773690"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "88.0"
+      },
+      {
+        "title": "B",
+        "value": "69.0"
+      },
+      {
+        "title": "H",
+        "value": "154.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "987e4f2f-4aea-4269-abad-55bd5cebc292",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4047"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017775342"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "15482dd2-0848-41d8-b9e1-159a00114493",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4048"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017773689"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "d473bc4a-cac6-4bc5-a4a9-e5101f5c3846",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4046"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017771404"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "88.0"
+      },
+      {
+        "title": "B",
+        "value": "69.0"
+      },
+      {
+        "title": "H",
+        "value": "196.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "e89c39b7-2849-4646-8609-3bf5048fd84d",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4049"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017771315"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "93.0"
+      },
+      {
+        "title": "B",
+        "value": "62.0"
+      },
+      {
+        "title": "C",
+        "value": "71.0"
+      },
+      {
+        "title": "G",
+        "value": "3/4-16 UNF"
+      },
+      {
+        "title": "H",
+        "value": "130.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "4a646e03-ab87-412a-86fa-5b551d30fcdb",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4058"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017773691"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "47ea47f7-682b-4576-b611-60b069752c6a",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4055"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017770595"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "108.0"
+      },
+      {
+        "title": "F",
+        "value": "S 80 X 3"
+      },
+      {
+        "title": "G",
+        "value": "1-14 UNS"
+      },
+      {
+        "title": "H",
+        "value": "151.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "9f8e2083-1965-4559-bf9e-20291b510265",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4056"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017771375"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "108.0"
+      },
+      {
+        "title": "F",
+        "value": "3 3/4-10 UNS"
+      },
+      {
+        "title": "G",
+        "value": "1-14 UNS - 1B"
+      },
+      {
+        "title": "H",
+        "value": "128.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "ffd55698-424d-4666-8386-7c3fa8a490f5",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4057"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017771455"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "108.0"
+      },
+      {
+        "title": "G",
+        "value": "1-14 UNS"
+      },
+      {
+        "title": "H",
+        "value": "156.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "a0182247-b70d-464d-a908-b3cfbdaedee8",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4059"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017773692"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "108.0"
+      },
+      {
+        "title": "G",
+        "value": "1-14 UNS"
+      },
+      {
+        "title": "H",
+        "value": "86.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "b6804180-681f-4826-b343-895a4a450e7f",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4054"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017771264"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "eacd8583-c827-42f6-b5c0-8f30a506143c",
+    "product": [
+      {
+        "title": "Product Code",
+        "value": "3S 4053"
+      },
+      {
+        "title": "Filter Type",
+        "value": "Fuel"
+      },
+      {
+        "title": "Filter Shape",
+        "value": "Spin-on Filtre"
+      },
+      {
+        "title": "EAN Code",
+        "value": "868017770920"
+      },
+      {
+        "title": "Status",
+        "value": "Active"
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Replacement for",
+        "value": ""
+      },
+      {
+        "title": "Packaging",
+        "value": ""
+      }
+    ],
+    "dimensions": [
+      {
+        "title": "A",
+        "value": "108.0"
+      },
+      {
+        "title": "F",
+        "value": "3 3/4-10 UNS"
+      },
+      {
+        "title": "G",
+        "value": "1-14 UNS"
+      },
+      {
+        "title": "H",
+        "value": "216.0"
+      }
+    ],
+    "additions": [
+      {
+        "title": "Primary Filter",
+        "value": ""
+      },
+      {
+        "title": "Secondary Filter",
+        "value": ""
+      }
+    ]
+  }
+]
