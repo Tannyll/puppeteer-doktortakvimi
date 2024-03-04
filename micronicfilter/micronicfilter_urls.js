@@ -13,7 +13,7 @@ const browser = await puppeteer.launch({
     userDataDir: join(__dirname, 'user_data/main'),
 //        args: ['--no-sandbox', '--disable-setuid-sandbox'],
 });
-
+let pageCount = 7
 const page = await browser.newPage();
 await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
 //await page.setViewport({width: 1200, height: 800});
@@ -35,14 +35,73 @@ async function getData(page) {
 }
 
 async function hasPage(page) {
-    return await page.$x("//a[starts-with(@href, '?page') and contains(text(),'next')]")
+    try {
+        return await page.$x("//a[starts-with(@href, '?page') and contains(text(),'next')]")
+
+    } catch (e) {
+
+    }
+}
+
+async function pagination(page) {
+    //const firstLink = await page.waitForSelector("#pagination > ul > li:nth-child(4) > a")
+    //const endPage = await page.$x("//a[contains(text(),'Page ')]")[0]
+    //const bodyHandle = await page.$x("//a[contains(text(),'Page ')]");
+    let item = [];
+    await page.evaluate(() => {
+        try {
+            const extracted = document.querySelectorAll('#pagination > ul > li');
+            extracted.forEach((element) => {
+                item.push({href: element.querySelector('a')})
+                console.log(element)
+
+            })
+
+        } catch (e) {
+        }
+    });
+
+    return item
+
+    /*    const selector = await page.$('#pagination > ul > li')
+        const pag = await page.evaluate(async () => {
+            const bar = document.querySelectorAll(selector)
+        })*/
+
 
 }
 
 async function goNext(page) {
-    await page.waitForXPath("//a[starts-with(@href, '?page') and contains(text(),'next')]")
-    const firstLink = await page.waitForSelector("#pagination > ul > li:nth-child(4) > a")
-    await page.click("#pagination > ul > li:nth-child(4) > a")
+    try {
+
+        page.setDefaultTimeout(3000)
+        //await page.waitForXPath("//a[starts-with(@href, '?page') and contains(text(),'next')]")
+        const pageFirst = page.waitForSelector("#pagination > ul > li:nth-child(2) > a")
+        const pageLast = page.waitForSelector("#pagination > ul > li:nth-child(4) > a")
+        if (pageFirst)
+            await page.click("#pagination > ul > li:nth-child(2) > a")
+
+        if (pageLast)
+            await page.click("#pagination > ul > li:nth-child(4) > a")
+
+
+        await pagination(page)
+    } catch (e) {
+        console.log(e)
+    }
+
+
+    /*
+        await pagination(page)
+
+        if (pageCount === "1") {
+            await page.click("#pagination > ul > li:nth-child(2) > a")
+            pageCount++
+        } else {
+            await page.click("#pagination > ul > li:nth-child(4) > a")
+            pageCount++
+        }
+    */
 
 }
 
